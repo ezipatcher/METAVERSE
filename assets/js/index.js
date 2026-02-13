@@ -55,6 +55,7 @@ fetch('./projectData.json')
       return response.json();
     })
     .then(projectsData => {
+      console.log("DATA LOADED:", projectsData);
       const projectListContainer = document.querySelector('.project-list');
       // Filter projects based on active tag using fuzzy matching
       const filteredLiTags = generateFilteredLiTags(projectsData);
