@@ -1,4 +1,4 @@
-let activeTag = '';
+let activeTag = null;
 
 // Get all tag buttons
 const tagButtons = document.querySelectorAll('.tag-button');
@@ -62,7 +62,7 @@ function fetchAndFilterProjects() {
       
       // Show/hide no results message
       const noResults = document.getElementById('noResults');
-      if (filteredLiTags.trim() === '') {
+      if (!filteredLiTags || filteredLiTags.trim().length === 0) {
         noResults.style.display = 'block';
         projectListContainer.style.display = 'none';
       } else {
@@ -88,7 +88,14 @@ const generateFilteredLiTags = projectsData => {
     
     if (projectData) {
       // Check if project should be included based on active tag with fuzzy matching
-      if (!activeTag || (projectData.tags && projectData.tags.some(tag => fuzzyMatch(tag.toLowerCase(), activeTag)))) {
+     if (
+  activeTag === null ||
+  (projectData.tags &&
+    projectData.tags.some(tag =>
+      fuzzyMatch(tag.toLowerCase(), activeTag)
+    ))
+) {
+ {
         const { projectTitle, folderName, thumbnailName } = projectData;
         
         const liTag = `
