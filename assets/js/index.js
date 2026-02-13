@@ -91,7 +91,7 @@ const generateFilteredLiTags = projectsData => {
       // Check if project should be included based on active tag with fuzzy matching
      if (
   activeTag === null ||
-  (projectData.tags &&
+  (projectData.tags && projectData.tags.length > 0 && 
     projectData.tags.some(tag =>
       fuzzyMatch(tag.toLowerCase(), activeTag)
     ))
